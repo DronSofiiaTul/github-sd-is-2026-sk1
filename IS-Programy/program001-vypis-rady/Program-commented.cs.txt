@@ -1,0 +1,147 @@
+Proměnná uchovává odpověď uživatele na otázku, zda chce program opakovat.
+Počáteční hodnota "a" zajistí, že se program při prvním spuštění provede.
+string again = "a";
+
+// Řídicí cyklus programu.
+   ToLower() převede odpověď na malá písmena, takže program pokračuje
+při zadání "a" i "A". Jakákoli jiná odpověď cyklus ukončí.
+
+ // while (again.ToLower() == "a")
+    
+    Vymaže předchozí obsah konzole, aby každé spuštění programu
+    začínalo na čisté obrazovce.
+    Console.Clear();
+
+    // Hlavička programu.
+        Hvězdičky vizuálně oddělují název programu a jméno autora od ostatního textu a zlepšují přehlednost výstupu.
+        Console.WriteLine("********************************");
+        Console.WriteLine("********************************");
+        Console.WriteLine("************Výpis řady**********");
+        Console.WriteLine("********************************");
+        Console.WriteLine("********************************");
+        Console.WriteLine("************Sofiia Dron*********");
+        Console.WriteLine("********************************");
+
+    // Načtení počáteční hodnoty číselné řady.
+        Uživatel zadává celé číslo, od kterého se začne řada vypisovat.
+        Console.Write("Zadejte první číslo řady (celé číslo): ");
+        Proměnná first uchovává první číslo řady.
+        Její hodnota se doplní až po úspěšném převodu uživatelského vstupu.
+   
+
+        TryParse se pokusí převést vstup na celé číslo.
+        Pokud převod selže, například kvůli zadání písmen, vrátí false.
+        Operátor ! obrátí výsledek, takže se cyklus opakuje při neplatném vstupu.
+        Uživatel tak musí zadat celé číslo, aby mohl pokračovat.
+        while (!int.TryParse(Console.ReadLine(), out first))
+    {
+        // Upozornění na chybný vstup a žádost o nové zadání.
+        Console.Write("Nezadali jste celé číslo. Zadejte první číslo řady znovu: ");
+    }
+
+    // Načtení koncové hodnoty číselné řady.
+        Tato hodnota určuje nejvyšší číslo, které se má ve vzestupné řadě
+        ještě vypsat, pokud na něj řada při dané diferenci dosáhne.
+        Console.Write("Zadejte poslední číslo řady (celé číslo): ");
+
+        Proměnná last uchovává koncovou hodnotu řady.
+        int last;
+
+    // Kontrola správnosti vstupu stejně jako u počáteční hodnoty.
+        Cyklus zabrání pokračování programu, dokud uživatel nezadá celé číslo.
+        while (!int.TryParse(Console.ReadLine(), out last))
+        {
+            // Pokud převod selže, uživatel dostane možnost zadat hodnotu znovu.
+            Console.Write("Nezadali jste celé číslo. Zadejte poslední číslo řady znovu: ");
+        }
+
+            Načtení diference, tedy hodnoty, o kterou se bude každé další číslo
+            řady zvětšovat. Diference musí být kladné celé číslo.
+            Console.Write("Zadejte diferenci (kladné celé číslo): ");
+
+    Proměnná step uchovává velikost kroku mezi jednotlivými čísly řady.
+    int step;
+
+    // Kontrolují se dvě podmínky:
+        1. Vstup musí být možné převést na celé číslo.
+        2. Číslo musí být větší než nula.
+        Operátor || znamená "nebo", takže stačí, aby byla splněna
+        alespoň jedna z těchto podmínek, a vstup se musí zadat znovu.
+        Kladná diference zabraňuje nekonečnému cyklu při výpisu vzestupné řady.
+        while (!int.TryParse(Console.ReadLine(), out step) || step <= 0)
+    {
+        // Upozornění na neplatnou diferenci.
+             Uživatel musí zadat celé číslo větší než nula.
+            Console.Write("Nezadali jste celé kladné číslo. Zadejte diferenci znovu: ");
+    }
+
+    // Rekapitulace zadaných hodnot.
+        Uživatel si může před samotným výpisem zkontrolovat,
+        jaké počáteční číslo, koncovou hodnotu a diferenci zadal.
+        Console.WriteLine();
+        Console.WriteLine("==========================");
+        Console.WriteLine($"První číslo: {first}; Poslední číslo: {last}; Diference: {step}");
+        Console.WriteLine("==========================");
+        Console.WriteLine();
+
+    // Výpis číselné řady.
+    Console.WriteLine("Výpis číselné řady");
+
+    // Kontrola, zda je počáteční hodnota menší nebo rovna koncové hodnotě.
+        Program podporuje pouze vzestupnou řadu, proto při first > last
+        nemá smysl spouštět cyklus pro její výpis.
+    if (first <= last)
+    {
+            Pomocná proměnná current uchovává právě zpracovávané číslo.
+            Přiřazením first zajistíme, že řada začne zadanou počáteční hodnotou.
+            Proměnná current se mění, zatímco původní hodnoty first a last zůstávají zachovány.
+            int current = first;
+
+            Cyklus vypisuje čísla, dokud aktuální hodnota nepřekročí
+            koncovou hodnotu. Podmínka <= umožňuje vypsat i poslední číslo,
+            pokud na něj řada přesně dosáhne.
+        while (current <= last)
+        {
+            Vypíše aktuální číslo řady na samostatný řádek.
+            Console.WriteLine(current);
+
+            Zvýší aktuální číslo o zadanou diferenci.
+            Tím se program posune k dalšímu členu číselné řady.
+            current += step;
+
+    }
+    else
+    {
+        Pokud je počáteční číslo větší než koncové, program řadu nevypisuje.
+        Místo toho uživatele informuje, že tento program umí pracovat
+        pouze se vzestupnou řadou.
+        Console.WriteLine("První číslo je větší než poslední. Tento program umí vypsat pouze vzestupnou řadu (od menšího k většímu).");
+    }
+
+    // Prázdný řádek odděluje výsledek od závěrečné otázky.
+    Console.WriteLine();
+
+    // Dotaz na opakování programu.
+        Uživatel může zadat "a" a spustit program znovu,
+        aniž by ho musel celý znovu otevírat.
+        Console.Write("Pro opakování programu stiskněte klávesu a. Následně potvrďte klávesou Enter: ");
+
+    // Načte odpověď uživatele.
+        Operátor ?? zajistí, že se při případné hodnotě null uloží prázdný řetězec.
+        Díky tomu lze bezpečně vyhodnotit podmínku dalšího průchodu cyklem.
+        again = Console.ReadLine() ?? "";
+}
+```
+
+
+
+//Část kódu	Co říct učiteli
+while (again.ToLower() == "a")	Cyklus umožňuje opakovat celý program, pokud uživatel zadá A nebo a.
+int.TryParse()	Ověřuje, zda lze zadaný text převést na celé číslo, aniž by program při chybném vstupu skončil chybou.
+out first	Při úspěšném převodu uloží získané číslo do proměnné first.
+step <= 0	Zajišťuje, že diference bude kladná, aby se řada správně posouvala nahoru.
+if (first <= last)	Ověřuje, zda má smysl vypisovat vzestupnou řadu.
+int current = first	Vytváří proměnnou pro postupný výpis, aniž by se měnila původní počáteční hodnota.
+while (current <= last)	Opakuje výpis, dokud aktuální číslo nepřekročí zadanou koncovou hodnotu.
+current += step	Posune se k dalšímu číslu řady přičtením diference.
+Console.ReadLine() ?? ""	Načte odpověď a případnou hodnotu null nahradí prázdným řetězcem.
