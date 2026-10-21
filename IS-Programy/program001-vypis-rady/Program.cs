@@ -36,15 +36,19 @@ while (again.ToLower() == "a")
         Console.Write("Nezadali jste celé číslo. Zadejte poslední číslo řády znovu: ");
     }
 
+    //Vstup počáteční hodnoty - špatné řešený
 
-    //Načtení diference s kontrolou kladného nenulového čísla
+    //Console.Write("Zajedte první číslo řady");
+    //int first = int.Parse(Console.ReadLine());
 
-    Console.Write("Zadejte diferenci (kladné celé číslo): ");
-    int step;
-    while (!int.TryParse(Console.ReadLine(), out step) || step <= 0)
-    {
-        Console.Write("Nezadali jste celé kladné číslo. Zadejte diferenci znovu: ");
-    }
+    // //Načtení diference s kontrolou kladného nenulového čísla
+
+    // Console.Write("Zadejte diferenci (kladné celé číslo): ");
+    // int step;
+    // while (!int.TryParse(Console.ReadLine(), out step) || step <= 0)
+    // {
+    //     Console.Write("Nezadali jste celé kladné číslo. Zadejte diferenci znovu: ");
+    // }
 
     //Rakapitulace zadaných hodnot
 
