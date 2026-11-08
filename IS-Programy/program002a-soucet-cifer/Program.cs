@@ -36,38 +36,23 @@ while (again.ToLower() == "a")
 
     //Příprava pomocných proměnných pro výpočet
     int numberBackup = number;
+    string numberText = number.ToString();
     int sum = 0; //Neutřální hodnota pro sčítání je 0
-    int digit;   //Proměnná pro uložení právě zjištěné číslice
     int multiplication = 1;
 
-    //Ošetření záporných čísel (znamenko nemá vliv na číslice)
 
-    if (number < 0)
+
+    //Zde alrgoritmus pomoci string
+
+    foreach (char character in numberText)
     {
-        number = -number;
-    }
 
-    //Zvláštní případ pro nulu
-    if (number == 0)
-    {
-        sum = 0;
-    }
-    else
-    {
-        Console.WriteLine();
-        Console.WriteLine("Průběh rozkladu čísla na číslice");
-
-
-        //Matematický rozklad čísla pomocí cyklu
-        //Využíváme operaci modulo - určení zbytku po celočíselném dělení
-        while (number > 0)
+        if (character != '-')
         {
-            digit = number % 10; //Modulo 10 -
-            sum = sum + digit;  //Příčtení číslice k celkovému součtu
-            Console.WriteLine($"Získaná číslice: {digit}");
-            number = number / 10; //Celočíselné dělení 10 odstraní poslední číslici
+            int numberDigit = int.Parse(character.ToString());
 
-            multiplication = multiplication * digit;
+            sum = sum + numberDigit;
+            multiplication = multiplication * numberDigit;
         }
     }
 
