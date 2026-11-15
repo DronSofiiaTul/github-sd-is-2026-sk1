@@ -1,6 +1,4 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-
+﻿
 string again = "a";
 
 //Řídicí cyklus aplikace
